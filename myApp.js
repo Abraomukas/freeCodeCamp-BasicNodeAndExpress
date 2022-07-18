@@ -6,7 +6,7 @@ console.log('Hello World');
 let indexPath = __dirname + '/views/index.html';
 let publicPath = __dirname + '/public';
 
-app.use(express.static(publicPath));
+app.use("/public", express.static(publicPath));
 
 app.get('/', (_req, res) => {
 	res.sendFile(indexPath);
