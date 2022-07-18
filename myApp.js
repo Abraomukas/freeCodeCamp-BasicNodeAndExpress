@@ -22,6 +22,7 @@ app.get('/', (_req, res) => {
 app.get(
 	'/now',
 	(_req, _res, next) => {
+		req.time = new Date().toString();
 		next();
 	},
 	(req, res) => {
