@@ -3,6 +3,11 @@ require('dotenv').config();
 let express = require('express');
 let app = express();
 
+app.use((req, _res, next) => {
+	console.log(req.method.toUpperCase() + ' ' + req.path + ' - ' + req.ip);
+	next();
+});
+
 console.log('Hello World');
 
 let indexPath = __dirname + '/views/index.html';
@@ -19,11 +24,6 @@ app.use('/json', (req, res) => {
 		process.env.MESSAGE_STYLE === 'uppercase' ? 'HELLO JSON' : 'Hello json';
 	res.json({ message: message });
 	res.redirect(301, req.url + '/json');
-});
-
-app.use('/', (req, _res) => {
-	console.log(req.method.toUpperCase() + ' ' + req.path + ' - ' + req.ip);
-	next();
 });
 
 module.exports = app;
