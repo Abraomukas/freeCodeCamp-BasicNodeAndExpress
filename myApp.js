@@ -19,11 +19,20 @@ app.get('/', (_req, res) => {
 	res.sendFile(indexPath);
 });
 
-app.use('/json', (req, res) => {
+app.get(
+	'/now',
+	(_req, _res, next) => {
+		next();
+	},
+	(req, res) => {
+		res.json({ time: req.time });
+	}
+);
+
+app.use('/json', (_req, res) => {
 	let message =
 		process.env.MESSAGE_STYLE === 'uppercase' ? 'HELLO JSON' : 'Hello json';
 	res.json({ message: message });
-	res.redirect(301, req.url + '/json');
 });
 
 module.exports = app;
