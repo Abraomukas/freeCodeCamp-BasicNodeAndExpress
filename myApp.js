@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 let express = require('express');
 let app = express();
 
@@ -13,7 +15,9 @@ app.get('/', (_req, res) => {
 });
 
 app.use('/json', (req, res) => {
-	res.json({ message: 'Hello json' });
+	let message =
+		process.env.MESSAGE_STYLE === 'uppercase' ? 'HELLO JSON' : 'Hello json';
+	res.json({ message: message });
 	res.redirect(301, req.url + '/json');
 });
 
