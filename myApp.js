@@ -21,4 +21,9 @@ app.use('/json', (req, res) => {
 	res.redirect(301, req.url + '/json');
 });
 
+app.use('/', (req, _res) => {
+	console.log(req.method.toUpperCase() + ' ' + req.path + ' - ' + req.ip);
+	next();
+});
+
 module.exports = app;
