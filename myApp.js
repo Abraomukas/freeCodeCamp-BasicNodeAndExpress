@@ -19,15 +19,17 @@ app.get('/', (_req, res) => {
 	res.sendFile(indexPath);
 });
 
+let delayInMilliseconds = 20 * 1000; // 20 seconds
+
 app.get(
 	'/now',
-	(_req, _res, next) => {
+	(req, _res, next) => {
 		req.time = new Date().toString();
 		next();
 	},
-	(req, res) => {
+	setTimeout((req, res) => {
 		res.json({ time: req.time });
-	}
+	}, delayInMilliseconds)
 );
 
 app.use('/json', (_req, res) => {
