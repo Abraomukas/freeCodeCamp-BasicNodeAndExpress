@@ -27,9 +27,11 @@ app.get(
 		req.time = new Date().toString();
 		next();
 	},
-	setTimeout((req, res) => {
-		res.json({ time: req.time });
-	}, delayInMilliseconds)
+	(req, res) => {
+		setTimeout(() => {
+			res.json({ time: req.time });
+		}, delayInMilliseconds);
+	}
 );
 
 app.use('/json', (_req, res) => {
