@@ -19,8 +19,6 @@ app.get('/', (_req, res) => {
 	res.sendFile(indexPath);
 });
 
-let delayInMilliseconds = 20 * 1000; // 20 seconds
-
 app.get(
 	'/now',
 	(req, _res, next) => {
@@ -28,11 +26,15 @@ app.get(
 		next();
 	},
 	(req, res) => {
-		setTimeout(() => {
-			res.json({ time: req.time });
-		}, delayInMilliseconds);
+		res.json({ time: req.time });
 	}
 );
+
+app.get('/:word/echo', (req, res) => {
+	let word = req.params.word;
+
+	res.json({ echo: word });
+});
 
 app.use('/json', (_req, res) => {
 	let message =
