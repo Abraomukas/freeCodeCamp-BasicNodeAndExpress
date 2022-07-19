@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+let bodyParser = require('body-parser');
 let express = require('express');
 let app = express();
 
@@ -7,6 +8,8 @@ app.use((req, _res, next) => {
 	console.log(req.method.toUpperCase() + ' ' + req.path + ' - ' + req.ip);
 	next();
 });
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 console.log('Hello World');
 
