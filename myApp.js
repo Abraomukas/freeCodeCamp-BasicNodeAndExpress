@@ -42,4 +42,11 @@ app.use('/json', (_req, res) => {
 	res.json({ message: message });
 });
 
+app.route('/name').get((req, res) => {
+	let firstName = req.query.first;
+	let lastName = req.query.last;
+
+	res.json({ name: firstName + ' ' + lastName });
+});
+
 module.exports = app;
