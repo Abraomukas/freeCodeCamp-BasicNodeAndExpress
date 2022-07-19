@@ -45,11 +45,19 @@ app.use('/json', (_req, res) => {
 	res.json({ message: message });
 });
 
-app.route('/name').get((req, res) => {
-	let firstName = req.query.first;
-	let lastName = req.query.last;
+app
+	.route('/name')
+	.get((req, res) => {
+		let firstName = req.query.first;
+		let lastName = req.query.last;
 
-	res.json({ name: firstName + ' ' + lastName });
-});
+		res.json({ name: firstName + ' ' + lastName });
+	})
+	.post((req, res) => {
+		let firstName = req.body.first;
+		let lastName = req.body.last;
+
+		res.json({ name: firstName + ' ' + lastName });
+	});
 
 module.exports = app;
